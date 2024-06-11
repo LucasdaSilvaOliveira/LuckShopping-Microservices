@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LuckShopping.ProductAPI.Data.Entites;
 using LuckShopping.ProductAPI.DTOs;
 using LuckShopping.ProductAPI.Repository;
 using Microsoft.AspNetCore.Http;
@@ -39,6 +40,31 @@ namespace LuckShopping.ProductAPI.Controllers
             return Ok(productDTO);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Create(ProductDTO dto)
+        {
+            var product = _mapper.Map<Product>(dto);
+            var response = await _productRepository.Create(product);
+            return Ok(response);
+        }
 
+        [HttpPut]
+        public async Task<IActionResult> Update(ProductDTO dto)
+        {
+
+            var product = _mapper.Map<Product>(dto);
+
+            var response = await _productRepository.Update(product);
+            return Ok(response);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(long id)
+        {
+            var response = await _productRepository.Delete(id);
+            if(response) return Ok();
+
+            return BadRequest(response);
+        }
     }
 }

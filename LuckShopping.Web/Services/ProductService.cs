@@ -54,11 +54,7 @@ namespace LuckShopping.Web.Services
             var response = await _client.PostAsJsonAsync(BasePath, model);
             if (response.IsSuccessStatusCode)
             {
-                var product = await this.FindProductById(model.Id)!;
-
-                if (product == null) throw new ApplicationException("Produto criado, mas houve um erro ao retorna-lo do banco!");
-
-                return product;
+                return model;
             }
             else
             {
