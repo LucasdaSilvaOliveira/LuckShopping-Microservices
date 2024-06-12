@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LuckShopping.ProductAPI", "LuckShopping.ProductAPI", "{2767EE9E-EF33-4989-B72E-5BA987B7F0BA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LuckShopping.Services", "LuckShopping.Services", "{2767EE9E-EF33-4989-B72E-5BA987B7F0BA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuckShopping.ProductAPI", "LuckShopping.ProductAPI\LuckShopping.ProductAPI.csproj", "{2C90559A-7D0D-45DB-9C7B-D14D15DAC4E6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LuckShopping.Web", "LuckShopping.Web", "{88EB6541-0836-4B61-BCB8-2872515A0BBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuckShopping.Web", "LuckShopping.Web\LuckShopping.Web.csproj", "{F30E6954-A249-41CB-AA10-8254D7A2EEE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuckShopping.Web", "LuckShopping.Web\LuckShopping.Web.csproj", "{F30E6954-A249-41CB-AA10-8254D7A2EEE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuckShopping.IdentityServer", "LuckShopping.IdentityServer\LuckShopping.IdentityServer.csproj", "{77D0FD57-2763-444F-9C3A-17C0DC2F11A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{F30E6954-A249-41CB-AA10-8254D7A2EEE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F30E6954-A249-41CB-AA10-8254D7A2EEE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F30E6954-A249-41CB-AA10-8254D7A2EEE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77D0FD57-2763-444F-9C3A-17C0DC2F11A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77D0FD57-2763-444F-9C3A-17C0DC2F11A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77D0FD57-2763-444F-9C3A-17C0DC2F11A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77D0FD57-2763-444F-9C3A-17C0DC2F11A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2C90559A-7D0D-45DB-9C7B-D14D15DAC4E6} = {2767EE9E-EF33-4989-B72E-5BA987B7F0BA}
 		{F30E6954-A249-41CB-AA10-8254D7A2EEE2} = {88EB6541-0836-4B61-BCB8-2872515A0BBC}
+		{77D0FD57-2763-444F-9C3A-17C0DC2F11A8} = {2767EE9E-EF33-4989-B72E-5BA987B7F0BA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {68448AC7-263F-4088-AE69-202E66D11E48}
