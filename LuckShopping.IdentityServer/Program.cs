@@ -1,4 +1,7 @@
+using LuckShopping.IdentityServer.Configuration;
+using LuckShopping.IdentityServer.Data;
 using LuckShopping.IdentityServer.Data.Context;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +12,25 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<LocalContext>(
     opt => opt.UseSqlServer(
         builder.Configuration.GetConnectionString("DataBase")));
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<LocalContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddIdentityServer(opt =>
+{
+    opt.Events.RaiseErrorEvents = true;
+    opt.Events.RaiseInformationEvents = true;
+    opt.Events.RaiseFailureEvents = true;
+    opt.Events.RaiseSuccessEvents = true;
+    opt.EmitStaticAudienceClaim = true;
+}).AddInMemoryIdentityResources(IdentityConfiguration.IdentityResources)
+.AddInMemoryApiScopes(IdentityConfiguration.ApiScopes)
+.AddInMemoryClients(IdentityConfiguration.Clients)
+.AddAspNetIdentity<ApplicationUser>()
+.AddDeveloperSigningCredential();
+
+
 
 var app = builder.Build();
 
@@ -24,6 +46,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseIdentityServer();
 
 app.UseAuthorization();
 

@@ -1,11 +1,12 @@
-﻿using Duende.IdentityServer.Models;
+﻿using Duende.IdentityServer;
+using Duende.IdentityServer.Models;
 
 namespace LuckShopping.IdentityServer.Configuration
 {
     public class IdentityConfiguration
     {
         public const string Admin = "Admin";
-        public const string Customer = "Customer";
+        public const string Client = "Client";
 
         public static IEnumerable<IdentityResource> IdentityResources => new List<IdentityResource>
         {
@@ -32,11 +33,29 @@ namespace LuckShopping.IdentityServer.Configuration
                     new Secret("my_super_secret".Sha256())
                 },
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
-                AllowedScopes = 
+                AllowedScopes =
                 {
                     "read",
                     "write",
                     "profile"
+                }
+            },
+            new Client
+            {
+                ClientId = "luck_shopping",
+                ClientSecrets =
+                {
+                    new Secret("my_super_secret".Sha256())
+                },
+                AllowedGrantTypes = GrantTypes.Code,
+                RedirectUris = {"http://localhost:47252/signin-oidc" },
+                PostLogoutRedirectUris = {"http://localhost:47252/signout-callback-oidc" },
+                AllowedScopes = new List<string>
+                {
+                    IdentityServerConstants.StandardScopes.OpenId,
+                    IdentityServerConstants.StandardScopes.Profile,
+                    IdentityServerConstants.StandardScopes.Email,
+                    "luck_shopping"
                 }
             }
         };
