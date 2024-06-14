@@ -2,6 +2,8 @@
 using LuckShopping.ProductAPI.Data.Entites;
 using LuckShopping.ProductAPI.DTOs;
 using LuckShopping.ProductAPI.Repository;
+using LuckShopping.ProductAPI.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +22,7 @@ namespace LuckShopping.ProductAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var product = await _productRepository.FindAll();
@@ -30,6 +33,7 @@ namespace LuckShopping.ProductAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         //[HttpGet("id")] = Nesse formato, o id não é required
         public async Task<IActionResult> FindById(int id)
         {
@@ -41,6 +45,7 @@ namespace LuckShopping.ProductAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(ProductDTO dto)
         {
             var product = _mapper.Map<Product>(dto);
@@ -49,6 +54,7 @@ namespace LuckShopping.ProductAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> Update(ProductDTO dto)
         {
 
@@ -59,6 +65,7 @@ namespace LuckShopping.ProductAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = Role.Admin)]
         public async Task<IActionResult> Delete(long id)
         {
             var response = await _productRepository.Delete(id);

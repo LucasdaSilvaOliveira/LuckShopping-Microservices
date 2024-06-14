@@ -1,6 +1,7 @@
 using LuckShopping.IdentityServer.Configuration;
 using LuckShopping.IdentityServer.Data;
 using LuckShopping.IdentityServer.Data.Context;
+using LuckShopping.IdentityServer.Initializer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,8 @@ builder.Services.AddDbContext<LocalContext>(
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<LocalContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 
 builder.Services.AddIdentityServer(opt =>
 {
@@ -34,6 +37,8 @@ builder.Services.AddIdentityServer(opt =>
 
 var app = builder.Build();
 
+var initializer = app.Services.CreateScope().ServiceProvider.GetService<IDbInitializer>();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -50,6 +55,8 @@ app.UseRouting();
 app.UseIdentityServer();
 
 app.UseAuthorization();
+
+initializer.Initialize();
 
 app.MapControllerRoute(
     name: "default",
