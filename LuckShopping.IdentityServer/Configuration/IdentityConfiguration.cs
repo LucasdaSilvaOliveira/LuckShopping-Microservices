@@ -48,8 +48,8 @@ namespace LuckShopping.IdentityServer.Configuration
                     new Secret("my_super_secret".Sha256())
                 },
                 AllowedGrantTypes = GrantTypes.Code,
-                RedirectUris = {"http://localhost:47252/signin-oidc" },
-                PostLogoutRedirectUris = {"http://localhost:47252/signout-callback-oidc" },
+                RedirectUris = {"https://localhost:7085/signin-oidc" },
+                PostLogoutRedirectUris = {"https://localhost:7085/signout-callback-oidc" },
                 AllowedScopes = new List<string>
                 {
                     IdentityServerConstants.StandardScopes.OpenId,

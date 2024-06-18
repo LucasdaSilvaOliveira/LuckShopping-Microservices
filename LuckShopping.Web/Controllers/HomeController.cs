@@ -94,5 +94,16 @@ namespace LuckShopping.Web.Controllers
 
             return View(model);
         }
+
+        public IActionResult Logout()
+        {
+            return SignOut("Cookies", "oidc");
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Login()
+        {
+            return RedirectToAction("Index");
+        }
     }
 }

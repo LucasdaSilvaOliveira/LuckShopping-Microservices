@@ -29,6 +29,7 @@ builder.Services.AddAuthentication(opt =>
     opt.TokenValidationParameters.RoleClaimType = "role";
     opt.Scope.Add("luck_shopping");
     opt.SaveTokens = true;
+    opt.RequireHttpsMetadata = false;
 });
 
 var app = builder.Build();
